@@ -1,0 +1,53 @@
+---
+title: "Heat map"
+author: "Jeff Hoover"
+date: "November 19, 2018"
+output: bookdown::pdf_document2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+warning = -1
+
+library(ggplot2)
+```
+
+
+```{r}
+#generate a random binary matrix
+mat <- matrix(sample(c(0,1), 20*20, replace = TRUE), nrow = 20)
+
+#heatmap with binary coloring pattern
+random_heatmap <- heatmap(mat, scale = "none", Rowv = NA, Colv = NA, 
+                          col = c("black", "white"), 
+                          labRow = FALSE, labCol = FALSE,
+                          main = "Random Binary Heatmap")
+```
+
+
+
+```{r}
+#generate a random binary matrix
+mat2 <- matrix(sample(c(0:5), 50*50, replace = TRUE), nrow = 50)
+
+#heatmap with binary coloring pattern
+random_heatmap2 <- heatmap(mat2, scale = "none", Rowv = NA, Colv = NA, 
+                          col = heat.colors(256, alpha = 1), 
+                          labRow = FALSE, labCol = FALSE,
+                          main = "Randomly Generated Heatmap")
+```
+
+
+```{r}
+#generate a random binary matrix
+mat3 <- matrix(sample(c(0:10), 50*50, replace = TRUE), nrow = 50)
+
+colfunc <- colorRampPalette(c("black", "white"))
+
+#test of the colfunc
+#plot(rep(1,10), col = colfunc(10), pch=19, cex = 3)
+
+random_heatmap3 <-  heatmap(mat3, scale = "none", Rowv = NA, Colv = NA, 
+                          col = colfunc(10), labRow = FALSE, labCol = FALSE,
+                          main = "Randomly Generated Heatmap")
+```
